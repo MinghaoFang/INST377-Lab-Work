@@ -4,6 +4,12 @@
     box-sizing: border-box;
   }
   
+  .name-container{
+      background-color: rgba(0, 139, 139, 0.8);
+      padding: 10px 15px;
+      display: flex;
+  }
+
   .menu-container {
     color: #fff;
     background-color: #5995DA;
@@ -16,11 +22,11 @@
     border: 1px solid #fff;
     width: 900px;
     display: flex;
-    justify-content: space-around;
+    justify-content: space-between;
   }
 
   .links {
-    border: 1px solid #fff;  /* For debugging */
+    border: 1px solid #fff;
     display: flex;
     justify-content: flex-end;
   }
@@ -41,12 +47,11 @@
     height: 300px;
     display: flex;
     justify-content: space-between;
-    align-items: stretch;
+    align-items: center;
   }
 
- .social,
- .logo,
- .subscribe {
+ .gplink,
+ .github{
     align-self: flex-end;
     margin-bottom: 20px;
  }
@@ -61,22 +66,22 @@
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
-    flex-direction: row;
+    flex-direction: row-reverse;
     align-items: center;
   }
   
+  .photo-grid-item {
+    border: 1px solid #fff;
+    width: 300px;
+    height: 300px;
+  }
+
   .first-item {
     order: 1;
   }
   
   .last-item {
     order: -1;
-  }
-
-  .photo-grid-item {
-    border: 1px solid #fff;
-    width: 300px;
-    height: 300px;
   }
 
   .footer {
@@ -90,6 +95,10 @@
     height: 200px;
     flex: 1;
   }
+
+.footer-two{
+    flex: 2;
+}
 
 .footer-one,
 .footer-three {
