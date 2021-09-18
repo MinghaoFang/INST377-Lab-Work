@@ -1,103 +1,112 @@
-* {
+*{
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-  }
-  
-  .name-container{
-      background-color: rgba(0, 139, 139, 0.8);
-      padding: 10px 15px;
-      display: flex;
-  }
+}
 
-  .menu-container {
+.name-container{
+    background-color:  rgba(0,139, 139,0.8);
+    padding: 10px 15px;
+    display: flex;
+}
+
+.menu-container{
     color: #fff;
     background-color: #5995DA;
     padding: 20px 0;
     display: flex;
     justify-content: center;
-  }
-  
-  .menu {
+}
+
+.menu{
     border: 1px solid #fff;
     width: 900px;
     display: flex;
     justify-content: space-between;
-  }
+}
 
-  .links {
+.links{
     border: 1px solid #fff;
     display: flex;
     justify-content: flex-end;
-  }
-  
-  .mainpage {
-    margin-left: 20px;
-  }
+}
 
-  .header-container {
+.mainpage{
+    margin-left: 20px;
+}
+
+.header-container{
     color: #5995DA;
-    background-color: #D6E9FE;
+    background: #D6E9FE;
     display: flex;
     justify-content: center;
-  }
-  
-  .header {
+}
+
+.header{
     width: 900px;
     height: 300px;
     display: flex;
     justify-content: space-between;
     align-items: center;
-  }
+}
 
- .gplink,
- .github{
+.gplink,
+.github{
     align-self: flex-end;
     margin-bottom: 20px;
- }
+}
 
- .photo-grid-container {
+.photo-grid-container{
     display: flex;
     justify-content: center;
-  }
-  
-  .photo-grid {
+}
+
+.photo-grid{
     width: 900px;
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
     flex-direction: row-reverse;
     align-items: center;
-  }
-  
-  .photo-grid-item {
+}
+
+.photo-grid-item{
     border: 1px solid #fff;
     width: 300px;
     height: 300px;
-  }
+}
 
-  .first-item {
+.first-item{
     order: 1;
-  }
-  
-  .last-item {
-    order: -1;
-  }
+}
 
-  .fourth-item {
+.last-item{
+    order: -1;
+}
+
+.fourth-item{
+    order: -1;
+}
+
+.footer{
+    display: flex;
+    justify-content: space-between;
+}
+
+.footer-item{
     border: 1px solid #fff;
     background-color: #D6E9FE;
     height: 200px;
     flex: 1;
-  }
+}
 
 .footer-two{
     flex: 2;
 }
 
 .footer-one,
-.footer-three {
-  background-color: #5995DA;
-  flex: initial;
-  width: 300px;
+.footer-three{
+    background-color: #5995DA;
+    flex: initial;
+    width: 300px;
 }
