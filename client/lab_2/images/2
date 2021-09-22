@@ -1,0 +1,10 @@
+def restaurant_rating():
+    total_rating=list()
+    for i,z,j in zip(ratings.rating, ratings.food_rating,ratings.service_rating):
+      total_rating.append(i+z+j)
+    ratings['total_rating']=total_rating
+    df=ratings[['placeID','total_rating']]
+    df1=df.groupby('placeID').mean()
+    df1=df1.rename(columns={'total_rating':'mean_rating'}).reset_index()
+    return df1
+    raise NotImplementedError()
