@@ -147,7 +147,8 @@
 #carousel_button--next{
   background-color: rgb(228, 134, 80);
   border-radius:10px;
-  border:0;
+  border-width: 3px;
+  border-color: green;
   font-weight: bold;
   cursor:pointer;
   width: 70px;
