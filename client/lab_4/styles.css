@@ -132,15 +132,13 @@
 #carousel_button--prev{
   background-color: rgb(223, 219, 219);
   border-radius:10px;
-  border-width: 3px;
-  border-color: green;
+  border:0;
   font-weight: bold;
   cursor:pointer;
   width: 70px;
   height: 30px;
   position:relative;
-  top:42%;
-  
+  top:42%; 
 }
 
 
