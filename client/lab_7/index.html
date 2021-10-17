@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang='en'>
+    <head>
+        <meta charset="UTF-8"/>
+        <title>Minghao Fang Lab 7: JSON to Map Markers</title>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css">
+        <link rel='stylesheet' href='styles.css' />
+        <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
+              integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A=="
+              crossorigin=""/>
+        <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"
+                integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA=="
+                crossorigin="">
+        </script>     
+    </head>
+
+    <body>
+        <div class="wrapper">
+            <div class="columns">
+                <div class="container">
+                    <div class="column is-two-thirds">
+                        <div class="title">Minghao Fang Lab 7: JSON to Map Markers</div>
+                        <h1 class="is-size-6 mb-5">Zip Code Food Search</h1>
+        
+                        <div class="field">        
+                                <div class="boxstyle">
+                                    <input type="text" class="input search">
+                                    <button class="style">Search</button>
+                                </div>   
+                        </div>
+                    </div>
+                    <ul class="suggestions"></ul>      
+                </div>
+                    
+                    <div class="column">
+                        <div class="box" id="mapid"></div>
+                    </div> 
+            </div>
+        </div>
+
+        <script src="script.js"></script>
+    </body>    
+</html>
