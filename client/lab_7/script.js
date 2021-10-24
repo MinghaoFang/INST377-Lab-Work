@@ -1,113 +1,82 @@
 const searchInput = document.querySelector('.search');
 const suggestions = document.querySelector('.suggestions');
 
-async function windowActions() {
+async function dataHandler() {
   const endpoint = 'https://data.princegeorgescountymd.gov/resource/umjn-t2iz.json';
   const request = await fetch(endpoint);
-  const arrayName = await request.json();
-  console.log(arrayName);
-  const colE = [];
-  mymap = null;
-  let pinMap = [];
+  const data = await request.json();
+  console.log(data);
 
-  async function searchPin(url) {
-    try {
-      const ur = await fetch(url);
-      const arr = await ur.json();
-      return arr;
-    } catch (err) {
-      console.error(err);
-      return err;
-    }
-  }
-
-  fetch(endpoint);
-
-  // eslint-disable-next-line consistent-return
-  function findMatches(wordToMatch, array) {
-    if (wordToMatch.length !== 0) {
-      document.querySelector('.suggestions').innerHTML = '';
-
-      return arrayName.filter((place) => {
-        const regex = new RegExp(wordToMatch, 'gi');
-        return (
-          place.zip.match(regex)
-        );
-      });
-    }suggestions.innerHTML = '';
-  }
-
-  function displayMatches(event) {
-    const endMatch = findMatches(event.target.value, arrayName).slice(0, 5);
-    matchArray = endMatch;
-    console.log('slice', matchArray);
-    const html = matchArray.map((place) => `
-        <li style ="width:100%">${place.name}
-        <br>${place.address_line_1}
-        <br>${place.zip}<br></li>`)
-      .join('');
-
-    suggestions.innerHTML = html;
-
-    function getPoint(matchElement) {
-      if (
-        matchElement !== null
-        && matchElement.geocoded_column_1 !== null
-        && matchElement.geocoded_column_1.coordinates !== null
-      ) {
-        return [
-          matchElement.geocoded_column_1.coordinates[1],
-          matchElement.geocoded_column_1.coordinates[0]
-        ];
-      }
-      return null;
-    }
-    pinMap = matchArray.map((item) => getPoint(item));
-  }
-
-  function mapInit() {
-    mymap = L.map('mapid').setView([39.00, -76.95], 13);
-    L.tileLayer(
-      'https://api.maptiler.com/maps/topo/{z}/{x}/{y}.png?key=0im19NFqvOVkTZzwiWhj',
-      {
-        attribution:
-          '<a href="https://www.maptiler.com/copyright/" target="_blank">&copy; MapTiler</a> <a href="https://www.openstreetmap.org/copyright" target="_blank">&copy; OpenStreetMap contributors</a>',
-        maxZoom: 18,
-        id: 'mapbox/streets-v11',
-        tileSize: 512,
-        zoomOffset: -1,
-        accessToken: 'pk.eyJ1IjoiamxpNzkiLCJhIjoiY2t1bXZsdHkyMDF6azJ1cGY4czB3N2RoNCJ9.TJk9AkHOXrQSxJ702X16UQ'
-      }
-    ).addTo(mymap);
-  }
-
-  function pinCount() {
-    let i = 0;
-    pinMap.forEach((zipElement) => {
-      if (i == 0) {
-        mymap.panTo(zipElement);
-        i = 2;
-      }
-      if (zipElement !== null) {
-        if (!colE.includes(zipElement)) {
-          colE.push(zipElement);
-          L.marker(zipElement).addTo(mymap);
-        }
-      } 
+  // eslint-disable-next-line no-shadow
+  function findMatches(wordToMatch, data) {
+    return data.filter((place) => {
+      const regex = new RegExp(wordToMatch, 'gi');
+      return place.zip.match(regex);
     });
-    console.log(colE);
+    // eslint-disable-next-line no-unreachable
+    suggestions.innerHTML = '';
+  }
+  function fillterlist(event) {
+    const matchArray = findMatches(event.target.value, data).slice(0, 5);
+    return matchArray;
+  }
+  function displayMatches(event) {
+    const matchArray = findMatches(event.target.value, data).slice(0, 5);
+    if (matchArray) {
+      const html = matchArray
+        .map((place) => {
+          const regexp = new RegExp(event.target.value, 'gi');
+          return `
+          <ul>
+            <li><div class="name">${place.name}</div></li>
+            <div class="category">${place.category}</div>
+            <div class="address">${place.address_line_1}</div>
+            <div class="city">${place.city}</div>
+            <div class="zip">${place.zip}</div>
+          </ul>
+          <br></br>
+        
+            
+            `;
+        })
+        .join('');
+      suggestions.innerHTML = html;
+    }
+  }
+  function map() {
+    const mymap = L.map('mapid').setView([38.989, -76.93], 11);
+    const ACCESSTOKEN = 'pk.eyJ1IjoibWZmMjY2MiIsImEiOiJja3Y1OHB3MzIxODQ3Mm9sMGl2NjM1MXRkIn0.t4S8jq5OD9zZ4rFtsURuCQ';
+
+    L.tileLayer(`https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token=${ACCESSTOKEN}`, {
+      attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
+      maxZoom: 18,
+      id: 'mapbox/streets-v11',
+      tileSize: 512,
+      zoomOffset: -1,
+      ACCESSTOKEN: 'pk.eyJ1IjoibWZmMjY2MiIsImEiOiJja3Y1OHB3MzIxODQ3Mm9sMGl2NjM1MXRkIn0.t4S8jq5OD9zZ4rFtsURuCQ'
+    }).addTo(mymap);
+  }
+  const mymap=map();
+  function mapInint(event) {
+    const slicedArray = fillterlist(event);
+    slicedArray.forEach((element) => {
+      console.log(element.geocoded_column_1.coordinates);
+      const point = element.geocoded_column_1;
+      const latLong = point.coordinates;
+      const marker = latLong.reverse();
+      L.marker(marker).addTo(mymap);
+    });
   }
 
-  buttonClick = document.querySelector('.style');
-  buttonClick.addEventListener('click', pinCount);
   searchInput.addEventListener('input', (evt) => {
     if (searchInput.value === '' || searchInput.value === null) {
       suggestions.innerHTML = '';
     } else {
+      fillterlist(evt);
+      mapInint(evt);
       displayMatches(evt);
     }
   });
-  mapInit();
 }
 
-window.onload = windowActions;
+window.onload = dataHandler;
